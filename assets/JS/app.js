@@ -178,7 +178,7 @@ window.addEventListener('load', async function ()  {
         redirect: 'follow'
     }
 
-    await fetch('https://gardone.liara.run/acceptors/get_phone', requestOpions)
+    await fetch('https://gardone.liara.run/acceptors/get_phone/', requestOpions)
     .then(res => res.text())
     .then(res => console.log(res))
     .catch(err => console.error(err))
