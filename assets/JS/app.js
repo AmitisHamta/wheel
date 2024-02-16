@@ -44,7 +44,8 @@ const closeLoginModal = () => {
     }, 500);
 }
 
-const loginError = () => {
+const loginError = error => {
+    errorText.textContent = error;
     errorText.classList.add('display-inline');
     setTimeout(() => {
         errorText.classList.remove('display-inline');
@@ -102,6 +103,17 @@ const playWinVideo = () => {
 
 const removeVideo = () => {
     winVideo.classList.remove('show-video');
+}
+
+const checkPhoneValidation = () => {
+    if (!phoneInput.value) {
+        loginError('* لطفا شماره تلفن همراه خود را وارد کنید')
+    }else if (!phoneRegex.test(phoneInput.value)) {
+        loginError('* شماره تلفن صحیح نمیباشد');
+    }else {
+        resetInputs();
+        closeLoginModal();
+    }
 }
 
 const spin = () => {
@@ -185,7 +197,7 @@ LossButton.addEventListener('click', () => {
 
 submitBtn.addEventListener('click', event => {
     event.preventDefault();
-    closeLoginModal();
+    checkPhoneValidation()
 })
 
 // phone input empty check
