@@ -166,7 +166,7 @@ const shuffle = array => {
     return array;
 }
 
-window.addEventListener('load', () => {
+window.addEventListener('load', async function ()  {
     removeFilter();
     showLoginModal();
     const formData = new FormData();
@@ -178,7 +178,7 @@ window.addEventListener('load', () => {
         redirect: 'follow'
     }
 
-    fetch('https://gardone.liara.run/acceptors/get_phone', requestOpions)
+    await fetch('https://gardone.liara.run/acceptors/get_phone', requestOpions)
     .then(res => res.text())
     .then(res => console.log(res))
     .catch(err => console.error(err))
