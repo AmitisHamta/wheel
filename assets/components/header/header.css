@@ -1,0 +1,648 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: iransans;
+}
+
+a {
+    text-decoration: none;
+    color: var(--black);
+}
+
+/* header */
+
+@font-face {
+    font-family: iransans;
+    src: url(../fonts/IranSansXPro/Webfonts/fonts/woff/IRANSansX-Regular.woff);
+}
+
+:root {
+  --white: #f5f5f5;
+  --black: #333;
+  --orange: #dc8501;
+  --blue: #106ea5;
+}
+
+#header {
+    width: 100%;
+    height: 14vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    transition: height 0.3s, background-color 0.3s;
+}
+
+#navbar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    padding: 0 150px;
+}
+
+#header-logo {
+    width: 10%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    direction: rtl;
+    color: transparent;
+    transition: width 0.3s;
+}
+
+#header-logo img {
+    width: 100%;
+    height: auto;
+}
+
+#header-logo-name {
+  display: none;
+  transition: opacity 0.3s;
+}
+
+#nav-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row-reverse;
+    gap: 20px;
+    padding-right: 100px;
+}
+
+.nav-btn {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    padding: 7px 10px;
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: font-size 0.3s;
+}
+
+.nav-btn a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+}
+
+.color-white {
+  color: var(--white);
+}
+
+.underline {
+    width: 100%;
+    height: 1px;
+    background-color: var(--orange);
+    position: absolute;
+    bottom: 0;
+    border-radius: 20px;
+}
+
+.nav-btn .underline {
+  border: 1px solid var(--orange);
+}
+
+.display-none {
+    display: none;
+}
+
+.nav-btn:hover .underline {
+    animation: showUnderline 0.6s ease-in-out;
+}
+
+.show-underline {
+  animation: showUnderline 0.6s ease-in-out;
+}
+
+@keyframes showUnderline {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.exit-underline {
+    animation: exitUnderline 0.4s ease-in-out;
+}
+
+@keyframes exitUnderline {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0;
+    }
+}
+
+#navbar-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row-reverse;
+  gap: 10px;
+}
+
+.panel-btn {
+  outline: none;
+  background-color: var(--orange);
+  border: 1px solid var(--orange);
+  border-radius: 20px;
+  width: 120px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: background-color 0.2s, width 0.3s, height 0.3s, font-size 0.3s;
+}
+
+.bg-blue {
+  background-color: var(--blue); 
+  border-color: var(--blue);
+}
+
+.panel-btn a {
+  color: var(--white);
+  transition: color 0.2s;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel-btn:hover a{
+  color: var(--black);
+} 
+
+.panel-btn:hover {
+  background-color: var(--white);
+}
+
+
+/* header style onscroll */
+.moved {
+    height: 10vh !important;
+    background-color: var(--white) !important;
+}
+
+#header.moved .nav-btn {
+    font-size: 1rem;
+}
+
+#header.moved #header-logo {
+  width: 7%;
+}
+
+#header.moved .nav-btn > a {
+  color: var(--black);
+}
+
+.products-dropdown, .service-dropdown {
+  position: absolute;
+  cursor: auto;
+  top: 100%;
+  display: none;
+  opacity: 0;
+  height: 165px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  transition: width 0.3s, height 0.3s;
+  display: none;
+}
+
+#header.moved .products-dropdown, #header.moved .service-dropdown {
+  width: 143px;
+  height: 165px;
+}
+
+.show-products{
+  opacity: 1;
+  display: flex;
+}
+
+.hide-products {
+  opacity: 0;
+  display: none;
+  animation: fadeOut 0.2s;
+}
+
+.list-container, .service-list-container {
+  width: 100%;
+  height: 100%;
+  background-color: var(--white);
+  border: 1px solid var(--orange);
+  border-radius: 10px; 
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:0 10px 0 20px;
+  display: none;
+}
+
+.products-list, .service-list {
+  list-style-type: none;
+  width: 100%;
+  color: var(--black);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  direction: rtl;
+  font-size: 1.2rem;
+  transition: font-size 0.3s;
+}
+
+#header.moved .products-list, #header.moved .service-list {
+  font-size: 1.1rem;
+} 
+
+.products-list a, .service-list a {
+  color: var(--black);
+  letter-spacing: 0.5s;
+  transition: color 0.2s;
+  width: 100%;
+  height: 100%;
+}
+
+.products-list li, .service-list li {
+  margin: 5px;
+  padding: 5px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  transition: background-color 0.2s;
+}
+
+.products-list li:hover a, .service-list li:hover a{
+  color: var(--white);
+}
+
+.products-list li:hover, .service-list li:hover {
+  background-color: var(--orange);
+}
+
+.products-list li .underline, .service-list li .underline {
+  bottom: -5px;
+  border: 1px solid var(--orange);
+}
+
+.dropdown-box, .service-dropdown-box {
+  width: 100%;
+  height: 0;
+  background-color: var(--white);
+  border: 1px solid transparent;
+  border-radius: 10px;
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  margin-top: 5px;
+}
+
+.dropdown {
+  animation: dropDown 1s linear;
+}
+
+.display-inline {
+  display: inline;
+}
+
+.display-flex {
+  display: flex;
+}
+
+@keyframes dropDown {
+  0% {
+    height: 0;
+    top: 0;
+    background-color: var(--orange);
+  }
+  50% {
+    height: 100%;
+    top: 0;
+  }
+  100% {
+    height: 0;
+    top: 99%;
+    background-color: var(--white);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    display: flex;
+  }
+  to {
+    opacity: 0;
+    display: none;
+  }
+}
+
+#header.moved > #navbar > #navbar-buttons > .panel-btn {
+  width: 100px;
+  height: 35px;
+  font-size: 0.7rem;
+}
+
+#menu-container {
+  display: none;
+}
+
+#menu-btn {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: var(--black);
+  font-size: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.2s, font-size 0.3s;
+}
+
+#menu-btn:hover {
+  color: var(--orange);
+}
+
+#header.moved #menu-btn {
+  font-size: 1.5rem;
+}
+
+.menu-list {
+  position: absolute;
+  background-color: var(--white);
+  width: 70vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 30px;
+  top: 0;
+  left: -70vw;
+}
+
+.menu-list ul {
+  list-style-type: none;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  direction: rtl;
+  gap: 30px;
+  width: 100%;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.menu-list a {
+  color: var(--black);
+  width: 100%;
+  transition: color 0.2s;
+}
+
+.menu-list li {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px;
+  border-radius: 10px;
+  transition: background-color 0.2s;
+}
+
+.menu-list .underline {
+  border: 1px solid var(--orange);
+  bottom: -5px;
+}
+
+.menu-list #navbar-buttons a {
+  color: var(--white);
+  padding: 5px;
+  transition: color 0.2s;
+}
+
+.menu-list #navbar-buttons {
+  flex-direction: column;
+}
+
+.menu-list .panel-btn:hover a{
+  color: var(--black) !important;
+}
+
+.menu-list li:hover {
+  background-color: var(--orange);
+}
+
+.menu-list li:hover a{
+  color: var(--white) !important;
+}
+
+.show-menu {
+  left: 0;
+  animation: swipe-right 0.5s linear;
+}
+
+.hide-menu {
+  left: -70vw;
+  animation: swipe-left 0.5s linear;
+}
+
+@keyframes swipe-right {
+  from {
+    left: -70vw;
+  }
+  to {
+    left: 0;
+  }
+}
+
+@keyframes swipe-left {
+  from {
+    left: 0;
+  }
+  to {
+    left: -70vw;
+  }
+}
+
+#exit-btn {
+  outline: none;
+  border: none;
+  font-size: 1.5rem;
+  color: crimson;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: transparent;
+}
+
+@media only screen and (max-width: 480px) {
+  #navbar {
+    padding: 10px 20px;
+  }
+
+  #nav-list {
+    display: none;
+  }
+
+  #navbar > #navbar-buttons {
+    display: none;
+  }
+
+  #header-logo {
+    width: 115px;
+  }
+
+  #header.moved #header-logo {
+    width: 80px;
+  }
+
+  #menu-container {
+    display: inline;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  #navbar {
+    padding: 20px 40px;
+  }
+
+  #nav-list {
+    display: none;
+  }
+
+  #navbar > #navbar-buttons {
+    display: none;
+  }
+
+  #header-logo {
+    width: 115px;
+  }
+
+  #header.moved #header-logo {
+    width: 80px;
+  }
+
+  #menu-container {
+    display: inline;
+  }
+
+  .menu-list {
+    width: 50vw;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  #navbar {
+    padding: 20px 40px;
+  }
+
+  #nav-list {
+    display: none;
+  }
+
+  #navbar > #navbar-buttons {
+    display: none;
+  }
+
+  #header-logo {
+    width: 115px;
+  }
+
+  #header.moved #header-logo {
+    width: 80px;
+  }
+
+  #menu-container {
+    display: inline;
+  }
+
+  .menu-list {
+    width: 40vw;
+  }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1279px) {
+  #navbar {
+    padding: 20px 40px;
+  }
+
+  .products-dropdown {
+    width: 150px;
+    height: 165px;
+  }
+
+  #header.moved .products-dropdown {
+    width: 143px;
+    height: 165px;
+  }
+
+  #nav-list {
+    padding-right: 20px;
+  }
+
+  .nav-btn {
+    font-size: 1rem;
+  }
+
+  .panel-btn {
+    width: 100px;
+    height: 35px;
+    font-size: 0.7rem;
+  }
+}
+
+@media only screen and (min-width: 1280px) and (max-width: 1600px) { 
+  .products-dropdown {
+    width: 150px;
+    height: 165px;
+  }
+
+  #header.moved .products-dropdown {
+    width: 143px;
+    height: 165px;
+  }
+
+  #nav-list {
+    padding: 0;
+  }
+
+  #navbar {
+    padding: 0 75px;
+  }
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=" شرکت آمیتیس همتا فروشنده دستگاه های پرداخت هوشمند و خدمات زیر سوئیچ بانکی مانند دستگاه کش لس، کارتخوان، خودپرداز، صندوق فروشگاهی و ملزومات بانکی">
+    <script defer src="https://kit.fontawesome.com/86ec138018.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" aria-disabled="true" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="assets/Images/HamtaLogo.webp" type="image/x-icon">
+    <title>گردونه شانس</title>
+</head>
+<body>
+    <site-loader></site-loader>
+    <div id="container">
+        <site-header></site-header>
+        <video muted id="winVideo">
+            <source src="assets/Videos/win.webm" type="video/webm">
+        </video>
+        <audio id="winEffect" preload="none">
+            <source src="assets/Audio/win.mp3" type="audio/mp3">
+        </audio> 
+        <form id="data-modal">
+            <h1>شرکت آمیتیس همتا</h1>
+            <p>خوش آمدید!</p>
+            <div id="inputs">
+                <input type="text" placeholder="تلفن همراه" id="phone-input" class="input" maxlength="11">
+            </div>
+            <button id="submit-btn">
+                تایید
+            </button>
+            <small>لطفا اطلاعات رو به درستی وارد کنید ❤</small>
+        </form>
+        <div class="prize-modal">
+            <img src="assets/Images/prize1.png" alt="">
+            <button>تایید</button>
+        </div>
+        <div class="prize-modal" id="loss">
+            <h1>
+                <i class="bi bi-emoji-frown-fill"></i>
+                حیف شد
+            </h1>
+            <p>دفعه بعد دوباره شانستو امتحان کن</p>
+            <button>تایید</button>
+        </div>
+        <div id="content">
+            <audio id="wheelEffect" preload="none">
+                <source src="assets/Audio/wheelEffect.mp3" type="audio/mp3">
+            </audio>
+            <audio id="failEffect" preload="none">
+                <source src="assets/Audio/fail.mp3" type="audio/mp3">
+            </audio>
+            <div id="caption-container">
+                <h1>با همتا همیشه برنده ای 😎</h1>
+                <div id="title">
+                    <h1>گردونه شانس پذیرندگان
+                        <span class="rightline show-rightline"></span>
+                    </h1>
+                    <p>گردونه رو بچرخون و شانست رو برای بردن جوایز باحال همتا امتحان کن
+                        <span class="rightline show-rightline"></span>
+                    </p>
+                </div>
+            </div>
+            <div id="spinner-container">
+                <div class="mainbox" id="mainbox">
+                    <div class="box" id="box">
+                        <div class="box1">
+                            <span class="font span1">
+                                <h5>جایزه 1</h5>
+                            </span>
+                            <span class="font span2">
+                                <h5>جایزه 2</h5>
+                            </span>
+                            <span class="font span3">
+                                <h5>جایزه 3</h5>
+                            </span>
+                            <span class="font span4">
+                                <h5>جایزه 4</h5>
+                            </span>
+                            <span class="font span5">
+                                <h5>جایزه 5</h5>
+                            </span>
+                        </div>
+                        <div class="box2">
+                            <span class="font span1">
+                                <h5>جایزه 6</h5>
+                            </span>
+                            <span class="font span2">
+                                <h5>جایزه 7</h5>
+                            </span>
+                            <span class="font span3">
+                                <h5>جایزه 8</h5>
+                            </span>
+                            <span class="font span4">
+                                <h5>جایزه 9</h5>
+                            </span>
+                            <span class="font span5">
+                                <h5>جایزه 10</h5>
+                            </span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                    <button class="spin">بچرخون</button>
+                </div>
+            </div>
+        </div>
+        <site-footer></site-footer>
+    </div>
+    <script type="module" src="assets/JS/app.js"></script>
+</body>
+</html>
