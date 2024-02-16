@@ -117,10 +117,8 @@ const checkPhoneValidation = () => {
 }
 
 const spin = () => {
-        // prizeModal.classList.remove('show-modal');
         const box = $.getElementById('box');
         const element = $.getElementById('mainbox');
-        let selectedItem = '';
     
         let first = shuffle([1890, 2250, 2610]);
         let second = shuffle([1850, 2210, 2570]);
@@ -132,35 +130,27 @@ const spin = () => {
     
         let results = shuffle([first[0], second[0], third[0], fourth[0], fifth[0], sixth[0], seventh[0]]);
     
-        if (first.includes(results[0])) {
-            selectedItem = 'جایزه اول'
-        }else if (second.includes(results[0])) {
-            selectedItem = 'جایزه دوم'
-        }else if (third.includes(results[0])) {
-            selectedItem = 'جایزه سوم'
-        }else if (fourth.includes(results[0])) {
-            selectedItem = 'جایزه چهارم'
-        }else if (fifth.includes(results[0])) {
-            selectedItem = 'جایزه پنجم'
-        }else if (sixth.includes(results[0])) {
-            selectedItem = 'جایزه ششم'
-        }else if (seventh.includes(results[0])) {
-            selectedItem = 'جایزه هفتم'
-        }
-    
         box.style.setProperty('transition', 'all ease 5s');
         box.style.transform = `rotate(${results[0]}deg)`;
         element.classList.remove('animate');
+
+        // random index generation
+
+        // check index in database
+
+
         setTimeout(() => {
             element.classList.add('animate');
-            // checkPrize(clicked);
+            // show the result / show prize if won || show fail if lost
             showPrizeModal();
             playWinVideo()
             playWinEffect();
             // showLossModal();
-            // playFailEffect()
+            // playFailEffect();
             box.style.setProperty(`transition`, 'initial');
-            box.style.transform = 'rotate(90deg)'
+            box.style.transform = 'rotate(90deg)';
+
+            // update user chance
         }, 5000);
 }
 
@@ -179,6 +169,12 @@ const shuffle = array => {
 window.addEventListener('load', () => {
     removeFilter();
     showLoginModal();
+    fetch('https://gardone.liara.run/acceptors/get_phone/phone/09211914597.json', {
+        method: 'GET'
+    })
+    .then(res => res.json())
+    .then(res => console.log(res))
+    .catch(err => console.error(err))
 })
 
 spinBtn.addEventListener('click', () => {
@@ -200,5 +196,5 @@ submitBtn.addEventListener('click', event => {
     checkPhoneValidation()
 })
 
-// phone input empty check
-// phone input validation
+// phone existing check in database
+// user chances check
