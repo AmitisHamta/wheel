@@ -169,10 +169,17 @@ const shuffle = array => {
 window.addEventListener('load', () => {
     removeFilter();
     showLoginModal();
-    fetch('https://gardone.liara.run/acceptors/get_phone/phone/09211914597.json', {
-        method: 'GET'
-    })
-    .then(res => res.json())
+    const formData = new FormData();
+    formData.append('phone', '09211914597');
+
+    const requestOpions = {
+        method: 'POST',
+        body: formData,
+        redirect: 'follow'
+    }
+
+    fetch('https://gardone.liara.run/acceptors/get_phone', requestOpions)
+    .then(res => res.text())
     .then(res => console.log(res))
     .catch(err => console.error(err))
 })
