@@ -72,13 +72,13 @@ const hidePrizeModal = () => {
 }
 
 const showLossModal = () => {
+    hideSpinLazyLoader();
     lossModal.classList.remove('scale-out-center');
     lossModal.classList.add('show-modal');
     lossModal.classList.add('scale-in-center');
 }
 
 const hideLossModal = () => {
-    hideSpinLazyLoader();
     lossModal.classList.remove('scale-in-center');
     lossModal.classList.add('scale-out-center');
     setTimeout(() => {
