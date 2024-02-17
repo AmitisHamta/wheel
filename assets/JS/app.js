@@ -192,7 +192,7 @@ const checkPhoneValidation = () => {
     }
 }
 
-async function checkUserData (phone) {
+async function getUsersData () {
     const formData = new FormData();
     formData.append('phone', '09211914597');
 
@@ -206,19 +206,28 @@ async function checkUserData (phone) {
     let users = await response.text();
     let usersList = JSON.parse(users)
 
-    console.log(users, typeof(users));
-    console.log(usersList), typeof(usersList);
-    // console.log(test);
-    usersList.forEach(user => {
-        console.log(users, user);
+    return usersList;
+}
+
+async function checkUserData (phone) {
+    const users = await getUsersData();
+
+    users.forEach(user => {
         if (phone === user.phone) {
-            console.log(true);
-            resetInputs();
-            closeLoginModal();
+            checkUserChance(user);
         }else {
-            loginError('* شماره به عنوان پذیرنده ثبت نشده')
+            loginError('* شماره به عنوان پذیرنده ثبت نشده');
         }
     })
+}
+
+const checkUserChance = user => {
+    if (user.count_chance > 0) {
+        resetInputs();
+        closeLoginModal();
+    }else {
+        loginError('* شانس شما برای گردونه تموم شده، منتظر فرصت های بعدی باش ')
+    }
 }
 
 window.addEventListener('load', async function ()  {
