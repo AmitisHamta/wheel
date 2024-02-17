@@ -103,7 +103,9 @@ const playFailEffect = () => {
 const playWinVideo = () => {
     winVideo.classList.add('show-video')
     winVideo.play().then(() => {
-        playWinEffect();
+        if (!winVideo.paused) {
+            playWinEffect();
+        }
     })
 }
 
@@ -154,7 +156,7 @@ const spin = () => {
         box.style.setProperty('transition', 'all ease 5s');
         box.style.transform = `rotate(${results[0]}deg)`;
         element.classList.remove('animate');
-        hideSpinLazyLoader()
+        hideSpinLazyLoader();
 
         // random index generation
 
