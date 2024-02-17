@@ -101,7 +101,7 @@ a {
     flex-direction: column;
     gap: 20px;
     padding: 40px;
-    position: absolute;
+    position: fixed;
     top: -40%;
     left: 35%;
     background-color: var(--orange);
@@ -117,7 +117,7 @@ a {
 .slide-in-blurred-top {
 	-webkit-animation: slide-in-blurred-top 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
 	animation: slide-in-blurred-top 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
-    top: 18% !important;
+    top: 30% !important;
 }
 
 @-webkit-keyframes slide-in-blurred-top {
@@ -268,7 +268,7 @@ a {
     text-align: center;
     direction: rtl;
     display: none;
-    font-size: 20px;
+    font-size: 1rem;
 }
 
 .display-inline {
@@ -572,9 +572,9 @@ h5 {
     background-color: var(--white);
     border: 1px solid var(--white);
     border-radius: 20px;
-    position: absolute;
+    position: fixed;
     z-index: 10;
-    top: 10%;
+    top: 15%;
     left: 25%;
     display: none;
     opacity: 0;
@@ -609,7 +609,7 @@ h5 {
 #loss {
     width: 30%;
     left: 35%;
-    top: 18%;
+    top: 30%;
     padding: 20px;
 }
 
@@ -1087,5 +1087,97 @@ video {
 
     .box2 .span5 h5 {
         right: 9%;
+    }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1279px) {
+    #data-modal, .prize-modal {
+        width: 50%;
+        margin: 0 5px;
+        left: 25%;
+        top: 33% !important;
+        position: fixed;
+    }
+
+    .prize-modal {
+        width: 70% !important;
+        left: 14% !important;
+        padding: 10px 5px;
+        top: 18% !important;
+    }
+
+    #loss {
+        padding: 20px;
+        top: 25% !important;
+    }
+
+    .prize-modal button {
+        width: 100%;
+    }
+
+    .slide-in-blurred-top {
+        top: 25% !important;
+    }
+
+    .input, #submit-btn {
+        width: 100%;
+    }
+
+    #data-modal small {
+        font-size: 0.8rem;
+    }
+
+    #caption-container {
+        padding: 10px;
+    }
+
+    #title h1 {
+        font-size: 2rem;
+    }
+
+    #title p {
+        font-size: 1rem;
+    }
+
+    .rightline {
+        top: 0;
+    }
+}
+
+@media screen and (min-width: 1280px) and (max-width: 1600px) {
+    #data-modal, .prize-modal {
+        width: 40%;
+        margin: 0 5px;
+        left: 30%;
+        top: 33% !important;
+        position: fixed;
+    }
+
+    .prize-modal {
+        width: 50% !important;
+        left: 25% !important;
+        padding: 10px 5px;
+        top: 20% !important;
+    }
+
+    #loss {
+        padding: 20px;
+        top: 30% !important;
+    }
+
+    .prize-modal button {
+        width: 100%;
+    }
+
+    .slide-in-blurred-top {
+        top: 25% !important;
+    }
+
+    .input, #submit-btn {
+        width: 100%;
+    }
+
+    #caption-container {
+        padding: 10px;
     }
 }
