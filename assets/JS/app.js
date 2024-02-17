@@ -118,14 +118,29 @@ const removeVideo = () => {
 const showSpinLazyLoader = () => {
     spinBtn.disabled = true;
     const btnText = $.querySelector('.spin p');
-    const lazyLoader = $.querySelector('.loader');
+    const lazyLoader = $.querySelector('.spin .loader');
     btnText.classList.add('display-none');
     lazyLoader.classList.add('display-inline');
 }
 
 const hideSpinLazyLoader = () => {
     const btnText = $.querySelector('.spin p');
-    const lazyLoader = $.querySelector('.loader');
+    const lazyLoader = $.querySelector('.spin .loader');
+    btnText.classList.remove('display-none');
+    lazyLoader.classList.remove('display-inline');
+}
+
+const showSubmitLazyLoader = () => {
+    spinBtn.disabled = true;
+    const btnText = $.querySelector('#submit-btn p');
+    const lazyLoader = $.querySelector('#submit-btn .loader');
+    btnText.classList.add('display-none');
+    lazyLoader.classList.add('display-inline');
+}
+
+const hideSubmitLazyLoader = () => {
+    const btnText = $.querySelector('#submit-btn p');
+    const lazyLoader = $.querySelector('#submit-btn .loader');
     btnText.classList.remove('display-none');
     lazyLoader.classList.remove('display-inline');
 }
@@ -183,8 +198,10 @@ const shuffle = array => {
 
 const checkPhoneValidation = () => {
     if (!phoneInput.value) {
+        hideSubmitLazyLoader()
         loginError('* لطفا شماره تلفن همراه خود را وارد کنید')
     }else if (!phoneRegex.test(phoneInput.value)) {
+        hideSubmitLazyLoader()
         loginError('* شماره تلفن صحیح نمیباشد');
     }else {
         getUsersData(phoneInput.value);
@@ -210,6 +227,7 @@ async function getUsersData (phone) {
     .then(res => JSON.parse(res))
     .then(users => checkUserChance(users[0]))
     .catch(() =>  {
+        hideSubmitLazyLoader()
         loginError('* شماره به عنوان پذیرنده ثبت نشده')
     })
 }
@@ -218,8 +236,10 @@ const checkUserChance = user => {
     if (user.count_chance > 0) {
         setIdCookie(user.id);
         resetInputs();
+        hideSubmitLazyLoader()
         closeLoginModal();
     }else {
+        hideSubmitLazyLoader()
         loginError('* شانس شما برای گردونه تموم شده، منتظر فرصت های بعدی باش ')
     }
 }
@@ -253,6 +273,7 @@ LossButton.addEventListener('click', () => {
 
 submitBtn.addEventListener('click', event => {
     event.preventDefault();
+    showSubmitLazyLoader();
     checkPhoneValidation();
 })
 
