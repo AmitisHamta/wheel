@@ -202,19 +202,15 @@ async function getUsersData (phone) {
     }
 
     await fetch('https://gardone.liara.run/acceptors/get_phone/', requestOpions)
-    .then(response => {
-        if (response.ok) {
-            response.text()
-        }else {
-            loginError('* شماره به عنوان پذیرنده ثبت نشده')
-        }
-    })
+    .then(response => response.text())
     .then(res => JSON.parse(res))
     .then(users => {
         checkUserData(users, phone) 
+        console.log('response err');
     })
     .catch(() =>  {
-        loginError('* لطفا دوباره تلاش کنید')
+        console.log('catch err');
+        loginError('* شماره به عنوان پذیرنده ثبت نشده')
     })
     // checkUserData(usersList, phone)
 }
