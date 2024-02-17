@@ -211,14 +211,23 @@ async function getUsersData () {
 
 async function checkUserData (phone) {
     const users = await getUsersData();
+    let currentUser = {};
+    let isInList = false;
 
     users.forEach(user => {
         if (phone === user.phone) {
-            checkUserChance(user);
+            isInList = true;
+            currentUser = user;
         }else {
-            loginError('* شماره به عنوان پذیرنده ثبت نشده');
+            isInList = false;
         }
     })
+
+    if (isInList) {
+        checkUserChance(currentUser);
+    }else {
+        loginError('* شماره به عنوان پذیرنده ثبت نشده');
+    }
 }
 
 const checkUserChance = user => {
