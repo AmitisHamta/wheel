@@ -215,6 +215,7 @@ async function checkUserData (phone) {
     let isInList = false;
 
     users.forEach(user => {
+        console.log(user);
         if (user.phone.includes(phone)) {
             isInList = true;
             currentUser = user;
