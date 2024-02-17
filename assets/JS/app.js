@@ -215,7 +215,7 @@ async function checkUserData (phone) {
     let isInList = false;
 
     users.forEach(user => {
-        if (phone === user.phone) {
+        if (user.phone.includes(phone)) {
             isInList = true;
             currentUser = user;
         }else {
@@ -224,6 +224,7 @@ async function checkUserData (phone) {
     })
 
     if (isInList) {
+        console.log(currentUser);
         checkUserChance(currentUser);
     }else {
         loginError('* شماره به عنوان پذیرنده ثبت نشده');
