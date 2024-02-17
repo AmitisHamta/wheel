@@ -205,6 +205,7 @@ async function checkUserData (phone) {
     let response = await fetch('https://gardone.liara.run/acceptors/get_phone/', requestOpions)
     let users = await response.text();
 
+    console.log(users);
     users.forEach(user => {
         console.log(users, user);
         if (phone === user.phone) {
