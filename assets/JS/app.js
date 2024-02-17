@@ -123,6 +123,7 @@ const checkPhoneValidation = () => {
 }
 
 const showSpinLazyLoader = () => {
+    spinBtn.disabled = true;
     const btnText = $.querySelector('.spin p');
     const lazyLoader = $.querySelector('.loader');
     btnText.classList.add('display-none');
@@ -137,7 +138,6 @@ const hideSpinLazyLoader = () => {
 }
 
 const spin = () => {
-        spinBtn.disabled = true;
         const box = $.getElementById('box');
         const element = $.getElementById('mainbox');
     
@@ -165,8 +165,7 @@ const spin = () => {
             element.classList.add('animate');
             // show the result / show prize if won || show fail if lost
             
-            playWinVideo()
-            playWinEffect();
+            playWinVideo();
             // showLossModal();
             // playFailEffect();
             box.style.setProperty(`transition`, 'initial');
