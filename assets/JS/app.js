@@ -210,15 +210,11 @@ async function getUsersData (phone) {
         }
     })
     .then(res => JSON.parse(res))
-    .then(users => {
-        checkUserData(users, phone) 
-        console.log('response err');
-    })
+    .then(users => checkUserData(users, phone))
     .catch(() =>  {
         console.log('catch err');
-        loginError("* لطفا دوباره تلاش کنید")
+        loginError('* شماره به عنوان پذیرنده ثبت نشده')
     })
-    // checkUserData(usersList, phone)
 }
 
 async function checkUserData (users, phone) {
