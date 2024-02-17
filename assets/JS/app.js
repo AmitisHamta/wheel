@@ -210,33 +210,33 @@ async function getUsersData (phone) {
         }
     })
     .then(res => JSON.parse(res))
-    .then(users => checkUserData(users, phone))
+    .then(users => checkUserChance(users[0]))
     .catch(() =>  {
         console.log('catch err');
         loginError('* شماره به عنوان پذیرنده ثبت نشده')
     })
 }
 
-async function checkUserData (users, phone) {
-    let currentUser = {};
-    let isInList = false;
+// async function checkUserData (users, phone) {
+//     let currentUser = {};
+//     let isInList = false;
 
-    console.log(users);
-    users.forEach(user => {
-        if (user.phone.includes(phone)) {
-            isInList = true;
-            currentUser = user;
-        }else {
-            isInList = false;
-        }
-    })
+//     console.log(users);
+//     users.forEach(user => {
+//         if (user.phone.includes(phone)) {
+//             isInList = true;
+//             currentUser = user;
+//         }else {
+//             isInList = false;
+//         }
+//     })
 
-    if (isInList) {
-        checkUserChance(currentUser);
-    }else {
-        loginError('* شماره به عنوان پذیرنده ثبت نشده');
-    }
-}
+//     if (isInList) {
+//         checkUserChance(currentUser);
+//     }else {
+//         loginError('* شماره به عنوان پذیرنده ثبت نشده');
+//     }
+// }
 
 const checkUserChance = user => {
     if (user.count_chance > 0) {
