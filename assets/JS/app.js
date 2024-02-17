@@ -57,6 +57,7 @@ const resetInputs = () => {
 }
 
 const showPrizeModal = () => {
+    hideSpinLazyLoader();
     prizeModal.classList.remove('scale-out-center');
     prizeModal.classList.add('show-modal');
     prizeModal.classList.add('scale-in-center');
@@ -77,6 +78,7 @@ const showLossModal = () => {
 }
 
 const hideLossModal = () => {
+    hideSpinLazyLoader();
     lossModal.classList.remove('scale-in-center');
     lossModal.classList.add('scale-out-center');
     setTimeout(() => {
@@ -111,17 +113,6 @@ const playWinVideo = () => {
 
 const removeVideo = () => {
     winVideo.classList.remove('show-video');
-}
-
-const checkPhoneValidation = () => {
-    if (!phoneInput.value) {
-        loginError('* لطفا شماره تلفن همراه خود را وارد کنید')
-    }else if (!phoneRegex.test(phoneInput.value)) {
-        loginError('* شماره تلفن صحیح نمیباشد');
-    }else {
-        resetInputs();
-        closeLoginModal();
-    }
 }
 
 const showSpinLazyLoader = () => {
@@ -166,7 +157,7 @@ const spin = () => {
         setTimeout(() => {
             element.classList.add('animate');
             // show the result / show prize if won || show fail if lost
-            
+            showSpinLazyLoader();
             playWinVideo();
             // showLossModal();
             // playFailEffect();
@@ -190,9 +181,18 @@ const shuffle = array => {
     return array;
 }
 
-window.addEventListener('load', async function ()  {
-    removeFilter();
-    showLoginModal();
+const checkPhoneValidation = () => {
+    if (!phoneInput.value) {
+        loginError('* لطفا شماره تلفن همراه خود را وارد کنید')
+    }else if (!phoneRegex.test(phoneInput.value)) {
+        loginError('* شماره تلفن صحیح نمیباشد');
+    }else {
+        checkUserData(phoneInput.value);
+        
+    }
+}
+
+async function checkUserData (phone) {
     const formData = new FormData();
     formData.append('phone', '09211914597');
 
@@ -202,10 +202,24 @@ window.addEventListener('load', async function ()  {
         redirect: 'follow'
     }
 
-    await fetch('https://gardone.liara.run/acceptors/get_phone/', requestOpions)
-    .then(res => res.text())
-    .then(res => console.log(res))
-    .catch(err => console.error(err))
+    let response = await fetch('https://gardone.liara.run/acceptors/get_phone/', requestOpions)
+    let users = await response.text();
+
+    users.forEach(user => {
+        console.log(users, user);
+        if (phone === user.phone) {
+            console.log(true);
+            resetInputs();
+            closeLoginModal();
+        }else {
+            loginError('* شماره به عنوان پذیرنده ثبت نشده')
+        }
+    })
+}
+
+window.addEventListener('load', async function ()  {
+    removeFilter();
+    showLoginModal();
 })
 
 spinBtn.addEventListener('click', () => {
@@ -224,7 +238,7 @@ LossButton.addEventListener('click', () => {
 
 submitBtn.addEventListener('click', event => {
     event.preventDefault();
-    checkPhoneValidation()
+    checkPhoneValidation();
 })
 
 // phone existing check in database
