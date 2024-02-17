@@ -264,6 +264,9 @@ a {
     background-color: var(--blue);
     font-size: 23px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #data-modal small {
