@@ -187,14 +187,14 @@ const checkPhoneValidation = () => {
     }else if (!phoneRegex.test(phoneInput.value)) {
         loginError('* شماره تلفن صحیح نمیباشد');
     }else {
-        checkUserData(phoneInput.value);
+        getUsersData(phoneInput.value);
         
     }
 }
 
-async function getUsersData () {
+async function getUsersData (phone) {
     const formData = new FormData();
-    formData.append('phone', '09211914597');
+    formData.append('phone', phone);
 
     const requestOpions = {
         method: 'POST',
@@ -206,11 +206,10 @@ async function getUsersData () {
     let users = await response.text();
     let usersList = JSON.parse(users)
 
-    return usersList;
+    checkUserChance(usersList, phone)
 }
 
-async function checkUserData (phone) {
-    const users = await getUsersData();
+async function checkUserData (users, phone) {
     let currentUser = {};
     let isInList = false;
 
