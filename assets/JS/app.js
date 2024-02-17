@@ -206,7 +206,7 @@ async function getUsersData (phone) {
     let users = await response.text();
     let usersList = JSON.parse(users)
 
-    checkUserChance(usersList, phone)
+    checkUserData(usersList, phone)
 }
 
 async function checkUserData (users, phone) {
