@@ -215,6 +215,7 @@ async function getUsersData (phone) {
 }
 
 const checkUserChance = user => {
+    console.log(user);
     if (user.count_chance > 0) {
         resetInputs();
         closeLoginModal();
