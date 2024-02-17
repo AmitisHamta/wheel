@@ -188,7 +188,6 @@ const checkPhoneValidation = () => {
         loginError('* شماره تلفن صحیح نمیباشد');
     }else {
         getUsersData(phoneInput.value);
-        
     }
 }
 
@@ -202,11 +201,18 @@ async function getUsersData (phone) {
         redirect: 'follow'
     }
 
-    let response = await fetch('https://gardone.liara.run/acceptors/get_phone/', requestOpions)
-    let users = await response.text();
-    let usersList = JSON.parse(users)
-
-    checkUserData(usersList, phone)
+    await fetch('https://gardone.liara.run/acceptors/get_phone/', requestOpions)
+    .then(res => {
+        if (res.status) {
+            res.text()
+        }else {
+            loginError('* شماره به عنوان پذیرنده ثبت نشده')
+            return false;
+        }
+    })
+    .then(res => JSON.parse(res))
+    .then(users => checkUserData(users, phone))
+    // checkUserData(usersList, phone)
 }
 
 async function checkUserData (users, phone) {
