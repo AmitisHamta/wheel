@@ -215,13 +215,21 @@ async function getUsersData (phone) {
 }
 
 const checkUserChance = user => {
-    console.log(user);
     if (user.count_chance > 0) {
+        setIdCookie(user.id);
         resetInputs();
         closeLoginModal();
     }else {
         loginError('* شانس شما برای گردونه تموم شده، منتظر فرصت های بعدی باش ')
     }
+}
+
+const setIdCookie = userId => {
+    let now = new Date();
+    let expire = now.getTime() + (24 * 60 * 60 * 1000);
+    now.setTime(expire);
+
+    $.cookie = `userId=${userId};path=/;expires=${now}`;
 }
 
 window.addEventListener('load', async function ()  {
