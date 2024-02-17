@@ -85,11 +85,15 @@ const hideLossModal = () => {
 }
 
 const playWheelEffect = () => {
-    wheelEffect.play()
+    wheelEffect.play().then(() => {
+        spin();
+    })
 }
 
 const playWinEffect = () => {
-    winEffect.play()
+    winEffect.play().then(() => {
+        showPrizeModal();
+    })
 }
 
 const playFailEffect = () => {
@@ -98,7 +102,9 @@ const playFailEffect = () => {
 
 const playWinVideo = () => {
     winVideo.classList.add('show-video')
-    winVideo.play()
+    winVideo.play().then(() => {
+        playWinEffect();
+    })
 }
 
 const removeVideo = () => {
@@ -116,7 +122,22 @@ const checkPhoneValidation = () => {
     }
 }
 
+const showSpinLazyLoader = () => {
+    const btnText = $.querySelector('.spin p');
+    const lazyLoader = $.querySelector('.loader');
+    btnText.classList.add('display-none');
+    lazyLoader.classList.add('display-inline');
+}
+
+const hideSpinLazyLoader = () => {
+    const btnText = $.querySelector('.spin p');
+    const lazyLoader = $.querySelector('.loader');
+    btnText.classList.remove('display-none');
+    lazyLoader.classList.remove('display-inline');
+}
+
 const spin = () => {
+        spinBtn.disabled = true;
         const box = $.getElementById('box');
         const element = $.getElementById('mainbox');
     
@@ -133,6 +154,7 @@ const spin = () => {
         box.style.setProperty('transition', 'all ease 5s');
         box.style.transform = `rotate(${results[0]}deg)`;
         element.classList.remove('animate');
+        hideSpinLazyLoader()
 
         // random index generation
 
@@ -142,13 +164,14 @@ const spin = () => {
         setTimeout(() => {
             element.classList.add('animate');
             // show the result / show prize if won || show fail if lost
-            showPrizeModal();
+            
             playWinVideo()
             playWinEffect();
             // showLossModal();
             // playFailEffect();
             box.style.setProperty(`transition`, 'initial');
             box.style.transform = 'rotate(90deg)';
+            spinBtn.disabled = false;
 
             // update user chance
         }, 5000);
@@ -185,7 +208,7 @@ window.addEventListener('load', async function ()  {
 })
 
 spinBtn.addEventListener('click', () => {
-    spin();
+    showSpinLazyLoader();
     playWheelEffect();
 })
 

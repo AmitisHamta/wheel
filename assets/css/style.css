@@ -538,6 +538,9 @@ h5 {
     font-size: 22px;
     cursor: pointer;
     z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     /* background: rgb(220,133,1);
     background: linear-gradient(325deg, rgba(220,133,1,1) 0%, rgba(227,165,72,1) 30%, rgba(229,172,87,1) 70%, rgba(245,245,245,1) 100%); */
     background: rgb(147,0,0);
@@ -1180,4 +1183,40 @@ video {
     #caption-container {
         padding: 10px;
     }
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 1s linear infinite;
+    display: none;
+}
+
+.loader::before , .loader::after {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    border: 5px solid var(--white);
+    animation: prixClipFix 2s linear infinite ;
+}
+
+.loader::after{
+    inset: 8px;
+    transform: rotate3d(90, 90, 0, 180deg );
+    border-color: var(--orange);
+}
+
+@keyframes rotate {
+    0%   {transform: rotate(0deg)}
+    100%   {transform: rotate(360deg)}
+}
+
+@keyframes prixClipFix {
+      0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+      50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+      75%, 100%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
 }
