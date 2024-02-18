@@ -23,7 +23,7 @@ const prizeMsg = $.querySelector('.prize-modal small')
 // const LossButton = $.querySelector('#loss button');
 const wheelEffect = $.getElementById('wheelEffect');
 const winEffect = $.getElementById('winEffect');
-const failEffect = $.getElementById('failEffect');
+// const failEffect = $.getElementById('failEffect');
 const winVideo = $.getElementById('winVideo');
 const cardInput = $.getElementById('card-input');
 
@@ -101,9 +101,9 @@ const playWinEffect = () => {
     })
 }
 
-const playFailEffect = () => {
-    failEffect.play()
-}
+// const playFailEffect = () => {
+//     failEffect.play()
+// }
 
 const playWinVideo = () => {
     winVideo.classList.add('show-video')
