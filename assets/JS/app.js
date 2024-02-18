@@ -61,6 +61,7 @@ const showPrizeModal = () => {
     prizeModal.classList.remove('scale-out-center');
     prizeModal.classList.add('show-modal');
     prizeModal.classList.add('scale-in-center');
+    hideWinVideo();
 }
 
 const hidePrizeModal = () => {
@@ -109,6 +110,12 @@ const playWinVideo = () => {
             playWinEffect();
         }
     })
+}
+
+const hideWinVideo = () => {
+    setTimeout(() => {
+        winVideo.classList.remove('show-video');
+    }, 3000);
 }
 
 const removeVideo = () => {
