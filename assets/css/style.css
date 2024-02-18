@@ -269,7 +269,7 @@ a {
     justify-content: center;
 }
 
-#data-modal small {
+#data-modal small, .prize-modal small{
     color: rgb(255, 41, 41);
     text-align: center;
     direction: rtl;
@@ -645,6 +645,19 @@ h5 {
     outline: none;
     cursor: pointer;
     color: var(--white);
+}
+
+.prize-modal input {
+    width: 90%;
+    height: 50px;
+    background-color: transparent;
+    border: 1px solid var(--orange);
+    border-radius: 20px;
+    outline: none;
+    color: var(--black);
+    font-size: 1.5rem;
+    padding: 20px;
+    display: none;
 }
 
 .scale-in-center {

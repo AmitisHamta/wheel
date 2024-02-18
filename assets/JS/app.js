@@ -14,16 +14,18 @@ const content = $.getElementById('content');
 const modal = $.getElementById('data-modal');
 const submitBtn = $.getElementById('submit-btn');
 const phoneInput = $.getElementById('phone-input');
-const errorText = $.querySelector('small');
+const errorText = $.querySelector('#data-modal small');
 const spinBtn = $.querySelector('.spin');
 const prizeModal = $.querySelector('.prize-modal');
 const prizeButton = $.querySelector('.prize-modal button');
+const prizeMsg = $.querySelector('.prize-modal small')
 const lossModal = $.getElementById('loss');
 const LossButton = $.querySelector('#loss button');
 const wheelEffect = $.getElementById('wheelEffect');
 const winEffect = $.getElementById('winEffect');
 const failEffect = $.getElementById('failEffect');
 const winVideo = $.getElementById('winVideo');
+const cardInput = $.getElementById('card-input');
 
 const phoneRegex = /^(?:(?:\+|00)98|0)?9\d{9}$/;
 
@@ -61,7 +63,7 @@ const showPrizeModal = () => {
     prizeModal.classList.remove('scale-out-center');
     prizeModal.classList.add('show-modal');
     prizeModal.classList.add('scale-in-center');
-    hideWinVideo();
+    removeVideo();
 }
 
 const hidePrizeModal = () => {
@@ -112,14 +114,10 @@ const playWinVideo = () => {
     })
 }
 
-const hideWinVideo = () => {
+const removeVideo = () => {
     setTimeout(() => {
         winVideo.classList.remove('show-video');
     }, 3000);
-}
-
-const removeVideo = () => {
-    winVideo.classList.remove('show-video');
 }
 
 const showSpinLazyLoader = () => {
@@ -320,18 +318,25 @@ async function getPrizeData () {
 }
 
 const checkPrizeData = prize => {
-    const img = $.getElementById('prize-img')
+    const img = $.getElementById('prize-img');
+
     if (prize.type.includes('وجه') && prize.title.includes('500,000')) {
+        cardInput.classList.add('display-inline');
         img.setAttribute('src', "assets/Images/1.webp")
     }else if (prize.type.includes('وجه') && prize.title.includes('1,000,000')) {
+        cardInput.classList.add('display-inline');
         img.setAttribute('src', "assets/Images/2.webp")
     }else if (prize.type.includes('وجه') && prize.title.includes('2,000,000')) {
+        cardInput.classList.add('display-inline');
         img.setAttribute('src', "assets/Images/3.webp")
     }else if (prize.type.includes('وجه') && prize.title.includes('3,000,000')) {
+        cardInput.classList.add('display-inline');
         img.setAttribute('src', "assets/Images/4.webp")
     }else if (prize.type.includes('وجه') && prize.title.includes('4,000,000')) {
+        cardInput.classList.add('display-inline');
         img.setAttribute('src', "assets/Images/5.webp")
     }else if (prize.type.includes('وجه') && prize.title.includes('5,000,000')) {
+        cardInput.classList.add('display-inline');
         img.setAttribute('src', "assets/Images/6.webp")
     }else if (prize.type.includes('کارتخوان') && prize.title.includes('5,000,000')) {
         img.setAttribute('src', "assets/Images/7.webp")
@@ -362,6 +367,28 @@ const checkPrizeData = prize => {
     playWinVideo();
 }
 
+const checkCardInput = () => {
+    if (cardInput.className.includes('display-inline')) {
+        if (!cardInput.value) {
+            prizeMsg.textContent = '* لطفا شماره شبا خود را وارد کنید';
+            errorText.classList.add('display-inline');
+            setTimeout(() => {
+                errorText.classList.remove('display-inline');
+            }, 3000)
+        }else if (cardInput.value.length < 24) {
+            prizeMsg.textContent = '* شماره شبا صحیح نمیباشد'
+            errorText.classList.add('display-inline');
+            setTimeout(() => {
+                errorText.classList.remove('display-inline');
+            }, 3000)
+        }else {
+            errorText.classList.remove('display-inline');
+            hidePrizeModal();
+            removeVideo();
+        }
+    }
+}
+
 window.addEventListener('load', async function ()  {
     removeFilter();
     showLoginModal();
@@ -373,8 +400,7 @@ spinBtn.addEventListener('click', () => {
 })
 
 prizeButton.addEventListener('click', () => {
-    hidePrizeModal();
-    removeVideo();
+    checkCardInput();
 })
 
 LossButton.addEventListener('click', () => {
