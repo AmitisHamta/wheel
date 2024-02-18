@@ -296,8 +296,9 @@ async function getPrizeData () {
     await fetch('https://gardone.liara.run/acceptors/get_gift/', requestOpions)
     .then(response => response.text())
     .then(data => {
-        checkPrizeData(data.gif)
         console.log(data);
+        console.log(data.gif);
+        checkPrizeData(data.gif)
     })
     .catch(err => {
         console.log(err);
