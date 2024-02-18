@@ -315,41 +315,41 @@ async function getPrizeData () {
 const checkPrizeData = prize => {
     const img = $.getElementById('prize-img')
     if (prize.type.includes('وجه') && prize.title.includes('500,000')) {
-        img.setAttribute('src', "assets/Images/1.jpg")
+        img.setAttribute('src', "assets/Images/1.webp")
     }else if (prize.type.includes('وجه') && prize.title.includes('1,000,000')) {
-        img.setAttribute('src', "assets/Images/2.jpg")
+        img.setAttribute('src', "assets/Images/2.webp")
     }else if (prize.type.includes('وجه') && prize.title.includes('2,000,000')) {
-        img.setAttribute('src', "assets/Images/3.jpg")
+        img.setAttribute('src', "assets/Images/3.webp")
     }else if (prize.type.includes('وجه') && prize.title.includes('3,000,000')) {
-        img.setAttribute('src', "assets/Images/4.jpg")
+        img.setAttribute('src', "assets/Images/4.webp")
     }else if (prize.type.includes('وجه') && prize.title.includes('4,000,000')) {
-        img.setAttribute('src', "assets/Images/5.jpg")
+        img.setAttribute('src', "assets/Images/5.webp")
     }else if (prize.type.includes('وجه') && prize.title.includes('5,000,000')) {
-        img.setAttribute('src', "assets/Images/6.jpg")
+        img.setAttribute('src', "assets/Images/6.webp")
     }else if (prize.type.includes('کارتخوان') && prize.title.includes('5,000,000')) {
-        img.setAttribute('src', "assets/Images/7.jpg")
+        img.setAttribute('src', "assets/Images/7.webp")
     }else if (prize.type.includes('کارتخوان') && prize.title.includes('7,000,000')) {
-        img.setAttribute('src', "assets/Images/8.jpg")
+        img.setAttribute('src', "assets/Images/8.webp")
     }else if (prize.type.includes('کارتخوان') && prize.title.includes('8,000,000')) {
-        img.setAttribute('src', "assets/Images/9.jpg")
+        img.setAttribute('src', "assets/Images/9.webp")
     }else if (prize.type.includes('کارتخوان') && prize.title.includes('10,000,000')) {
-        img.setAttribute('src', "assets/Images/10.jpg")
+        img.setAttribute('src', "assets/Images/10.webp")
     }else if (prize.type.includes('کارتخوان') && prize.title.includes('15,000,000')) {
-        img.setAttribute('src', "assets/Images/11.jpg")
+        img.setAttribute('src', "assets/Images/11.webp")
     }else if (prize.type.includes('کارتخوان') && prize.title.includes('20,000,000')) {
-        img.setAttribute('src', "assets/Images/12.jpg")
+        img.setAttribute('src', "assets/Images/12.webp")
     }else if (prize.type.includes('رومیزی') && prize.title.includes('25,000,000')) {
-        img.setAttribute('src', "assets/Images/13.jpg")
+        img.setAttribute('src', "assets/Images/13.webp")
     }else if (prize.type.includes('رومیزی') && prize.title.includes('30,000,000')) {
-        img.setAttribute('src', "assets/Images/14.jpg")
+        img.setAttribute('src', "assets/Images/14.webp")
     }else if (prize.type.includes('رومیزی') && prize.title.includes('50,000,000')) {
-        img.setAttribute('src', "assets/Images/15.jpg")
+        img.setAttribute('src', "assets/Images/15.jpwebpg")
     }else if (prize.type.includes('دیواری') && prize.title.includes('70,000,000')) {
-        img.setAttribute('src', "assets/Images/16.jpg")
+        img.setAttribute('src', "assets/Images/16.webp")
     }else if (prize.type.includes('دیواری') && prize.title.includes('80,000,000')) {
-        img.setAttribute('src', "assets/Images/17.jpg")
+        img.setAttribute('src', "assets/Images/17.webp")
     }else if (prize.type.includes('دیواری') && prize.title.includes('100,000,000')) {
-        img.setAttribute('src', "assets/Images/18.jpg")
+        img.setAttribute('src', "assets/Images/18.webp")
     }
 
     playWinVideo();
