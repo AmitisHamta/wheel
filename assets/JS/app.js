@@ -198,6 +198,8 @@ const shuffle = array => {
 }
 
 const checkPhoneValidation = () => {
+    const englishNums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
     if (!phoneInput.value) {
         hideSubmitLazyLoader()
         loginError('* لطفا شماره تلفن همراه خود را وارد کنید')
