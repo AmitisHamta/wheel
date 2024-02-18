@@ -386,6 +386,9 @@ const checkCardInput = () => {
             hidePrizeModal();
             removeVideo();
         }
+    }else {
+        hidePrizeModal();
+        removeVideo();
     }
 }
 
