@@ -418,7 +418,9 @@ async function setUserCard (card) {
 
     await fetch('https://gardone.liara.run/acceptors/add_card/', requestOpions)
     .then(res => {
-        hidePrizeLazyLoader()
+        hidePrizeLazyLoader();
+        hidePrizeModal();
+        removeVideo();
     })
     .catch(err => {
         alert('* دوباره تلاش کنید');
