@@ -131,7 +131,7 @@ const hideSpinLazyLoader = () => {
 }
 
 const showSubmitLazyLoader = () => {
-    // spinBtn.disabled = true;
+    submitBtn.disabled = true;
     const btnText = $.querySelector('#submit-btn p');
     const lazyLoader = $.querySelector('#submit-btn .loader');
     btnText.classList.add('display-none');
@@ -139,6 +139,7 @@ const showSubmitLazyLoader = () => {
 }
 
 const hideSubmitLazyLoader = () => {
+    submitBtn.disabled = false;
     const btnText = $.querySelector('#submit-btn p');
     const lazyLoader = $.querySelector('#submit-btn .loader');
     btnText.classList.remove('display-none');
