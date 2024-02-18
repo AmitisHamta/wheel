@@ -165,21 +165,17 @@ const spin = () => {
         element.classList.remove('animate');
         hideSpinLazyLoader();
 
-        // random index generation
-
-        // check index in database
-
-
         setTimeout(() => {
             element.classList.add('animate');
             // show the result / show prize if won || show fail if lost
             showSpinLazyLoader();
-            playWinVideo();
+            getPrizeData();
+            // playWinVideo();
             // showLossModal();
             // playFailEffect();
             box.style.setProperty(`transition`, 'initial');
             box.style.transform = 'rotate(90deg)';
-            spinBtn.disabled = false;
+            // spinBtn.disabled = false;
 
             // update user chance
         }, 5000);
@@ -270,6 +266,85 @@ const setIdCookie = userId => {
     now.setTime(expire);
 
     $.cookie = `userId=${userId};path=/;expires=${now}`;
+}
+
+const getIdCookie = () => {
+    const cookies = $.cookie.split(';');
+    let userId = 0;
+
+    cookies.forEach(cookie => {
+        if (cookie.includes('userId')) {
+            userId = cookie.substring(cookie.indexOf('=') + 1);
+        }
+    })
+
+    return userId;
+}
+
+async function getPrizeData () {
+    const userId = getIdCookie();
+
+    const formData = new FormData();
+    formData.append('user', userId);
+
+    const requestOpions = {
+        method: 'POST',
+        body: formData,
+        redirect: 'follow'
+    }
+
+    await fetch('https://gardone.liara.run/acceptors/get_gift/', requestOpions)
+    .then(response => response.text())
+    .then(res => JSON.parse(res))
+    .then(prize => checkPrizeData(prize))
+    .catch(() => {
+        hideSpinLazyLoader();
+        spin.disabled = false;
+        alert('* دوباره تلاش کنید')
+    })
+}
+
+const checkPrizeData = prize => {
+    const img = $.getElementById('prize-img')
+    if (prize.type.includes('وجه') && prize.title.includes('500,000')) {
+        img.setAttribute('src', "assets/Images/1.jpg")
+    }else if (prize.type.includes('وجه') && prize.title.includes('1,000,000')) {
+        img.setAttribute('src', "assets/Images/2.jpg")
+    }else if (prize.type.includes('وجه') && prize.title.includes('2,000,000')) {
+        img.setAttribute('src', "assets/Images/3.jpg")
+    }else if (prize.type.includes('وجه') && prize.title.includes('3,000,000')) {
+        img.setAttribute('src', "assets/Images/4.jpg")
+    }else if (prize.type.includes('وجه') && prize.title.includes('4,000,000')) {
+        img.setAttribute('src', "assets/Images/5.jpg")
+    }else if (prize.type.includes('وجه') && prize.title.includes('5,000,000')) {
+        img.setAttribute('src', "assets/Images/6.jpg")
+    }else if (prize.type.includes('کارتخوان') && prize.title.includes('5,000,000')) {
+        img.setAttribute('src', "assets/Images/7.jpg")
+    }else if (prize.type.includes('کارتخوان') && prize.title.includes('7,000,000')) {
+        img.setAttribute('src', "assets/Images/8.jpg")
+    }else if (prize.type.includes('کارتخوان') && prize.title.includes('8,000,000')) {
+        img.setAttribute('src', "assets/Images/9.jpg")
+    }else if (prize.type.includes('کارتخوان') && prize.title.includes('10,000,000')) {
+        img.setAttribute('src', "assets/Images/10.jpg")
+    }else if (prize.type.includes('کارتخوان') && prize.title.includes('15,000,000')) {
+        img.setAttribute('src', "assets/Images/11.jpg")
+    }else if (prize.type.includes('کارتخوان') && prize.title.includes('20,000,000')) {
+        img.setAttribute('src', "assets/Images/12.jpg")
+    }else if (prize.type.includes('رومیزی') && prize.title.includes('25,000,000')) {
+        img.setAttribute('src', "assets/Images/13.jpg")
+    }else if (prize.type.includes('رومیزی') && prize.title.includes('30,000,000')) {
+        img.setAttribute('src', "assets/Images/14.jpg")
+    }else if (prize.type.includes('رومیزی') && prize.title.includes('50,000,000')) {
+        img.setAttribute('src', "assets/Images/15.jpg")
+    }else if (prize.type.includes('دیواری') && prize.title.includes('70,000,000')) {
+        img.setAttribute('src', "assets/Images/16.jpg")
+    }else if (prize.type.includes('دیواری') && prize.title.includes('80,000,000')) {
+        img.setAttribute('src', "assets/Images/17.jpg")
+    }else if (prize.type.includes('دیواری') && prize.title.includes('100,000,000')) {
+        img.setAttribute('src', "assets/Images/18.jpg")
+    }
+
+    playWinVideo();
 }
 
 window.addEventListener('load', async function ()  {
