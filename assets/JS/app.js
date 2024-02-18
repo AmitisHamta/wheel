@@ -209,7 +209,6 @@ const checkPhoneValidation = () => {
 
         value.forEach(num => {
             if (!englishNums.includes(num)) {
-                console.log(value, num);
                 isNum = false;
                 return;
             }
