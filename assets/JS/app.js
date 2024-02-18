@@ -198,16 +198,30 @@ const shuffle = array => {
 }
 
 const checkPhoneValidation = () => {
-    const englishNums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const englishNums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
     if (!phoneInput.value) {
         hideSubmitLazyLoader()
         loginError('* لطفا شماره تلفن همراه خود را وارد کنید')
-    }else if (!phoneRegex.test(phoneInput.value)) {
-        hideSubmitLazyLoader()
-        loginError('* شماره تلفن صحیح نمیباشد');
     }else {
-        getUsersData(phoneInput.value);
+        let isNum = true;
+        englishNums.forEach(num => {
+            if (!num.includes(phoneInput.value)) {
+                isNum = false;
+                return;
+            }
+        })
+        
+        if (!isNum) {
+            hideSubmitLazyLoader();
+            loginError('* لطفا از ارقام فارسی و حروف استفاده نکنید');
+            return;
+        }else if (!phoneRegex.test(phoneInput.value)) {
+            hideSubmitLazyLoader()
+            loginError('* شماره تلفن صحیح نمیباشد');
+        }else {
+            getUsersData(phoneInput.value);
+        }
     }
 }
 
