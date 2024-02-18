@@ -794,7 +794,7 @@ video {
         padding: 20px;
     }
 
-    .prize-modal button {
+    .prize-modal button, .prize-modal input {
         width: 100%;
     }
 
@@ -923,7 +923,7 @@ video {
         padding: 20px;
     }
 
-    .prize-modal button {
+    .prize-modal button, .prize-modal input {
         width: 100%;
     }
 
@@ -1053,7 +1053,7 @@ video {
         top: 25% !important;
     }
 
-    .prize-modal button {
+    .prize-modal button, .prize-modal input {
         width: 100%;
     }
 
@@ -1174,7 +1174,7 @@ video {
         top: 25% !important;
     }
 
-    .prize-modal button {
+    .prize-modal button, .prize-modal input {
         width: 100%;
     }
 
@@ -1228,7 +1228,7 @@ video {
         top: 30% !important;
     }
 
-    .prize-modal button {
+    .prize-modal button, .prize-modal input {
         width: 100%;
     }
 

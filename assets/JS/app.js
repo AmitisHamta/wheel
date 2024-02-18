@@ -371,18 +371,18 @@ const checkCardInput = () => {
     if (cardInput.className.includes('display-inline')) {
         if (!cardInput.value) {
             prizeMsg.textContent = '* لطفا شماره شبا خود را وارد کنید';
-            errorText.classList.add('display-inline');
+            prizeMsg.classList.add('display-inline');
             setTimeout(() => {
-                errorText.classList.remove('display-inline');
+                prizeMsg.classList.remove('display-inline');
             }, 3000)
         }else if (cardInput.value.length < 24) {
             prizeMsg.textContent = '* شماره شبا صحیح نمیباشد'
-            errorText.classList.add('display-inline');
+            prizeMsg.classList.add('display-inline');
             setTimeout(() => {
-                errorText.classList.remove('display-inline');
+                prizeMsg.classList.remove('display-inline');
             }, 3000)
         }else {
-            errorText.classList.remove('display-inline');
+            prizeMsg.classList.remove('display-inline');
             hidePrizeModal();
             removeVideo();
         }
