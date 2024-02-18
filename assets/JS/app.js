@@ -17,7 +17,7 @@ const phoneInput = $.getElementById('phone-input');
 const errorText = $.querySelector('#data-modal small');
 const spinBtn = $.querySelector('.spin');
 const prizeModal = $.querySelector('.prize-modal');
-const prizeButton = $.querySelector('.prize-modal button');
+const prizeButton = $.querySelector('#prize-btn');
 const prizeMsg = $.querySelector('.prize-modal small')
 // const lossModal = $.getElementById('loss');
 // const LossButton = $.querySelector('#loss button');
@@ -147,6 +147,22 @@ const hideSubmitLazyLoader = () => {
     submitBtn.disabled = false;
     const btnText = $.querySelector('#submit-btn p');
     const lazyLoader = $.querySelector('#submit-btn .loader');
+    btnText.classList.remove('display-none');
+    lazyLoader.classList.remove('display-inline');
+}
+
+const showPrizeLazyLoader = () => {
+    prizeButton.disabled = true;
+    const btnText = $.querySelector('#prize-btn p');
+    const lazyLoader = $.querySelector('#prize-btn .loader');
+    btnText.classList.add('display-none');
+    lazyLoader.classList.add('display-inline');
+}
+
+const hidePrizeLazyLoader = () => {
+    prizeButton.disabled = false;
+    const btnText = $.querySelector('#prize-btn p');
+    const lazyLoader = $.querySelector('#prize-btn .loader');
     btnText.classList.remove('display-none');
     lazyLoader.classList.remove('display-inline');
 }
@@ -315,7 +331,7 @@ const checkPrizeData = prize => {
 
     if (prize.type.includes('وجه') && prize.title.includes('500,000')) {
         cardInput.classList.add('display-inline');
-        img.setAttribute('src', "assets/Images/1.webp")
+        img.setAttribute('src', "assets/Images/1.webp");
     }else if (prize.type.includes('وجه') && prize.title.includes('1,000,000')) {
         cardInput.classList.add('display-inline');
         img.setAttribute('src', "assets/Images/2.webp")
@@ -365,24 +381,49 @@ const checkCardInput = () => {
         if (!cardInput.value) {
             prizeMsg.textContent = '* لطفا شماره شبا خود را وارد کنید';
             prizeMsg.classList.add('display-inline');
+            hidePrizeLazyLoader()
             setTimeout(() => {
                 prizeMsg.classList.remove('display-inline');
             }, 3000)
         }else if (cardInput.value.length < 24) {
             prizeMsg.textContent = '* شماره شبا صحیح نمیباشد'
             prizeMsg.classList.add('display-inline');
+            hidePrizeLazyLoader()
             setTimeout(() => {
                 prizeMsg.classList.remove('display-inline');
             }, 3000)
         }else {
             prizeMsg.classList.remove('display-inline');
-            hidePrizeModal();
-            removeVideo();
+            setUserCard(cardInput.value);
         }
     }else {
+        hidePrizeLazyLoader()
         hidePrizeModal();
         removeVideo();
     }
+}
+
+async function setUserCard (card) {
+    const userId = getIdCookie();
+
+    const formData = new FormData();
+    formData.append('user', userId);
+    formData.append('card', card);
+
+    const requestOpions = {
+        method: 'POST',
+        body: formData,
+        redirect: 'follow'
+    }
+
+    await fetch('https://gardone.liara.run/acceptors/add_card/', requestOpions)
+    .then(res => {
+        hidePrizeLazyLoader()
+    })
+    .catch(err => {
+        alert('* دوباره تلاش کنید');
+        console.log(err);
+    })
 }
 
 window.addEventListener('load', async function ()  {
@@ -396,6 +437,7 @@ spinBtn.addEventListener('click', () => {
 })
 
 prizeButton.addEventListener('click', () => {
+    showPrizeLazyLoader()
     checkCardInput();
 })
 
