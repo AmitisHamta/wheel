@@ -297,7 +297,8 @@ async function getPrizeData () {
     .then(response => response.text())
     .then(res => JSON.parse(res))
     .then(prize => checkPrizeData(prize))
-    .catch(() => {
+    .catch(err => {
+        console.log(err);
         hideSpinLazyLoader();
         spin.disabled = false;
         alert('* دوباره تلاش کنید')
