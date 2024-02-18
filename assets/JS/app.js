@@ -295,8 +295,14 @@ async function getPrizeData () {
 
     await fetch('https://gardone.liara.run/acceptors/get_gift/', requestOpions)
     .then(response => response.text())
-    .then(res => JSON.parse(res))
-    .then(prize => checkPrizeData(prize))
+    .then(res => {
+        console.log(res);
+        JSON.parse(res)
+    })
+    .then(prize => {
+        console.log(prize);
+        checkPrizeData(prize)
+    })
     .catch(err => {
         console.log(err);
         hideSpinLazyLoader();
