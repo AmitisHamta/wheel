@@ -19,8 +19,8 @@ const spinBtn = $.querySelector('.spin');
 const prizeModal = $.querySelector('.prize-modal');
 const prizeButton = $.querySelector('.prize-modal button');
 const prizeMsg = $.querySelector('.prize-modal small')
-const lossModal = $.getElementById('loss');
-const LossButton = $.querySelector('#loss button');
+// const lossModal = $.getElementById('loss');
+// const LossButton = $.querySelector('#loss button');
 const wheelEffect = $.getElementById('wheelEffect');
 const winEffect = $.getElementById('winEffect');
 const failEffect = $.getElementById('failEffect');
@@ -74,20 +74,20 @@ const hidePrizeModal = () => {
     }, 300);
 }
 
-const showLossModal = () => {
-    hideSpinLazyLoader();
-    lossModal.classList.remove('scale-out-center');
-    lossModal.classList.add('show-modal');
-    lossModal.classList.add('scale-in-center');
-}
+// const showLossModal = () => {
+//     hideSpinLazyLoader();
+//     lossModal.classList.remove('scale-out-center');
+//     lossModal.classList.add('show-modal');
+//     lossModal.classList.add('scale-in-center');
+// }
 
-const hideLossModal = () => {
-    lossModal.classList.remove('scale-in-center');
-    lossModal.classList.add('scale-out-center');
-    setTimeout(() => {
-        lossModal.classList.remove('show-modal');
-    }, 300);
-}
+// const hideLossModal = () => {
+//     lossModal.classList.remove('scale-in-center');
+//     lossModal.classList.add('scale-out-center');
+//     setTimeout(() => {
+//         lossModal.classList.remove('show-modal');
+//     }, 300);
+// }
 
 const playWheelEffect = () => {
     wheelEffect.play().then(() => {
@@ -172,17 +172,10 @@ const spin = () => {
 
         setTimeout(() => {
             element.classList.add('animate');
-            // show the result / show prize if won || show fail if lost
             showSpinLazyLoader();
             getPrizeData();
-            // playWinVideo();
-            // showLossModal();
-            // playFailEffect();
             box.style.setProperty(`transition`, 'initial');
             box.style.transform = 'rotate(90deg)';
-            // spinBtn.disabled = false;
-
-            // update user chance
         }, 5000);
 }
 
@@ -406,15 +399,12 @@ prizeButton.addEventListener('click', () => {
     checkCardInput();
 })
 
-LossButton.addEventListener('click', () => {
-    hideLossModal();
-})
+// LossButton.addEventListener('click', () => {
+//     hideLossModal();
+// })
 
 submitBtn.addEventListener('click', event => {
     event.preventDefault();
     showSubmitLazyLoader();
     checkPhoneValidation();
 })
-
-// phone existing check in database
-// user chances check
