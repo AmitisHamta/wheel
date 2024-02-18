@@ -205,12 +205,16 @@ const checkPhoneValidation = () => {
         loginError('* لطفا شماره تلفن همراه خود را وارد کنید')
     }else {
         let isNum = true;
-        englishNums.forEach(num => {
-            if (!num.includes(phoneInput.value)) {
+        let value = phoneInput.value.split('');
+
+        value.forEach(num => {
+            if (!englishNums.includes(num)) {
+                console.log(value, num);
                 isNum = false;
                 return;
             }
         })
+        
         
         if (!isNum) {
             hideSubmitLazyLoader();
