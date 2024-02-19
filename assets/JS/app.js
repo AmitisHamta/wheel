@@ -240,7 +240,14 @@ const checkPhoneValidation = () => {
 
 async function getUsersData (phone) {
     const formData = new FormData();
-    formData.append('phone', phone);
+    if (phone[0] === 0) {
+        let nums = phone.split('');
+        nums.splice(0, 1);
+        let newPhone = nums.join('');
+        formData.append('phone', newPhone);
+    }else {
+        formData.append('phone', phone);
+    }
 
     const requestOpions = {
         method: 'POST',
@@ -414,9 +421,7 @@ async function setUserCard (card) {
         hidePrizeModal();
         removeVideo();
     })
-    .catch(err => {
-        alert('* دوباره تلاش کنید');
-    })
+    .catch(err => alert('* دوباره تلاش کنید'))
 }
 
 window.addEventListener('load', async function ()  {
