@@ -106,7 +106,7 @@ const playWinEffect = () => {
 // }
 
 const playWinVideo = () => {
-    winVideo.classList.add('show-video')
+    winVideo.classList.add('show-video');
     winVideo.play().then(() => {
         if (!winVideo.paused) {
             playWinEffect();
@@ -309,17 +309,9 @@ async function getPrizeData () {
 
     await fetch('https://gardone.liara.run/acceptors/get_gift/', requestOpions)
     .then(response => response.text())
-    .then(res => {
-        console.log(res);
-        return JSON.parse(res)
-    })
-    .then(data => {
-        console.log(data);
-        console.log(data.gif);
-        checkPrizeData(data.gif)
-    })
+    .then(res => JSON.parse(res))
+    .then(data => checkPrizeData(data.gif))
     .catch(err => {
-        console.log(err);
         hideSpinLazyLoader();
         spin.disabled = false;
         alert('* دوباره تلاش کنید')
