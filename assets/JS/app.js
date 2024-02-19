@@ -242,13 +242,9 @@ async function getUsersData (phone) {
     const formData = new FormData();
 
     if (phone[0] == 0) {
-        console.log(phone);
         let nums = phone.split('');
-        console.log(nums);
         let newNums = nums.splice(1);
-        console.log(newNums);
         let newPhone = newNums.join('');
-        console.log(newPhone);
         formData.append('phone', newPhone);
     }else {
         formData.append('phone', phone);
