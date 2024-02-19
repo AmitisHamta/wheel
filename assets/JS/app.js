@@ -245,7 +245,7 @@ async function getUsersData (phone) {
         console.log(phone);
         let nums = phone.split('');
         console.log(nums);
-        let newNums = nums.splice(0, 1);
+        let newNums = nums.splice(1);
         console.log(newNums);
         let newPhone = newNums.join('');
         console.log(newPhone);
