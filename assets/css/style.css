@@ -726,6 +726,7 @@ video {
     position: absolute;
     display: none;
     z-index: 9;
+    object-fit: cover;
 }
 
 .show-video {
