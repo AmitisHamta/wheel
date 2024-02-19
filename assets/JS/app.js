@@ -471,22 +471,24 @@ async function test () {
     })
     .then(res => JSON.parse(res))
     .then(async function () {
-        const formData = new FormData();
-        formData.append('user', '17436');
-
-        const requestOpions = {
-            method: 'POST',
-            body: formData,
-            redirect: 'follow'
+        for(let i = 0; i < 1000; i++) {
+            const formData = new FormData();
+                formData.append('user', '17436');
+        
+                const requestOpions = {
+                    method: 'POST',
+                    body: formData,
+                    redirect: 'follow'
+                }
+        
+                await fetch('https://gardone.liara.run/acceptors/get_gift/', requestOpions)
+                .then(response => response.text())
+                .then(res => JSON.parse(res))
+                .then(data => console.log(data.gif))
+                .catch(err => { 
+                    console.log(err);
+                })  
         }
-
-        await fetch('https://gardone.liara.run/acceptors/get_gift/', requestOpions)
-        .then(response => response.text())
-        .then(res => JSON.parse(res))
-        .then(data => console.log(data.gif))
-        .catch(err => { 
-            console.log(err);
-        })
     })
     .catch(err =>  console.log(res))
 }
