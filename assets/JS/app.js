@@ -167,6 +167,14 @@ const hidePrizeLazyLoader = () => {
     lazyLoader.classList.remove('display-inline');
 }
 
+const resetSpinner = () => {
+    const box = $.getElementById('box');
+    const element = $.getElementById('mainbox');
+    element.classList.add('animate');
+    box.style.setProperty(`transition`, 'initial');
+    box.style.transform = 'rotate(90deg)';
+}
+
 const spin = () => {
         const box = $.getElementById('box');
         const element = $.getElementById('mainbox');
@@ -187,11 +195,8 @@ const spin = () => {
         hideSpinLazyLoader();
 
         setTimeout(() => {
-            element.classList.add('animate');
             showSpinLazyLoader();
             getPrizeData();
-            box.style.setProperty(`transition`, 'initial');
-            box.style.transform = 'rotate(90deg)';
         }, 5000);
 }
 
@@ -374,6 +379,7 @@ const checkPrizeData = prize => {
     }
 
     playWinVideo();
+    resetSpinner();
 }
 
 const checkCardInput = () => {
@@ -428,7 +434,6 @@ async function setUserCard (card) {
 window.addEventListener('load', () => {
     removeFilter();
     showLoginModal();
-    test();
 })
 
 spinBtn.addEventListener('click', () => {
@@ -450,45 +455,3 @@ submitBtn.addEventListener('click', event => {
     showSubmitLazyLoader();
     checkPhoneValidation();
 })
-
-async function test () {
-    const formData = new FormData();
-
-    formData.append('phone', '9127371704');
-
-
-    const requestOpions = {
-        method: 'POST',
-        body: formData,
-        redirect: 'follow'
-    }
-
-    await fetch('https://gardone.liara.run/acceptors/get_phone/', requestOpions)
-    .then(response => {
-        if (response.ok) {
-            return response.text()
-        }
-    })
-    .then(res => JSON.parse(res))
-    .then(async function () {
-        for(let i = 0; i < 1000; i++) {
-            const formData = new FormData();
-                formData.append('user', '17436');
-        
-                const requestOpions = {
-                    method: 'POST',
-                    body: formData,
-                    redirect: 'follow'
-                }
-        
-                await fetch('https://gardone.liara.run/acceptors/get_gift/', requestOpions)
-                .then(response => response.text())
-                .then(res => JSON.parse(res))
-                .then(data => console.log(data.gif))
-                .catch(err => { 
-                    console.log(err);
-                })  
-        }
-    })
-    .catch(err =>  console.log(res))
-}
