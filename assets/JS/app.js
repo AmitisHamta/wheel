@@ -416,7 +416,6 @@ async function setUserCard (card) {
     })
     .catch(err => {
         alert('* دوباره تلاش کنید');
-        console.log(err);
     })
 }
 
