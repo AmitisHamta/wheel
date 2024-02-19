@@ -425,9 +425,10 @@ async function setUserCard (card) {
     .catch(err => alert('* دوباره تلاش کنید'))
 }
 
-window.addEventListener('load', async function ()  {
+window.addEventListener('load', () => {
     removeFilter();
     showLoginModal();
+    test();
 })
 
 spinBtn.addEventListener('click', () => {
@@ -449,3 +450,43 @@ submitBtn.addEventListener('click', event => {
     showSubmitLazyLoader();
     checkPhoneValidation();
 })
+
+async function test () {
+    const formData = new FormData();
+
+    formData.append('phone', '9127371704');
+
+
+    const requestOpions = {
+        method: 'POST',
+        body: formData,
+        redirect: 'follow'
+    }
+
+    await fetch('https://gardone.liara.run/acceptors/get_phone/', requestOpions)
+    .then(response => {
+        if (response.ok) {
+            return response.text()
+        }
+    })
+    .then(res => JSON.parse(res))
+    .then(async function () {
+        const formData = new FormData();
+        formData.append('user', '17436');
+
+        const requestOpions = {
+            method: 'POST',
+            body: formData,
+            redirect: 'follow'
+        }
+
+        await fetch('https://gardone.liara.run/acceptors/get_gift/', requestOpions)
+        .then(response => response.text())
+        .then(res => JSON.parse(res))
+        .then(data => console.log(data.gif))
+        .catch(err => { 
+            console.log(err);
+        })
+    })
+    .catch(err =>  console.log(res))
+}
