@@ -240,7 +240,8 @@ const checkPhoneValidation = () => {
 
 async function getUsersData (phone) {
     const formData = new FormData();
-    if (phone[0] === 0) {
+
+    if (phone[0] == 0) {
         console.log(phone);
         let nums = phone.split('');
         console.log(nums);
