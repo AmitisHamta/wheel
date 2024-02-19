@@ -63,6 +63,7 @@ const showPrizeModal = () => {
     prizeModal.classList.remove('scale-out-center');
     prizeModal.classList.add('show-modal');
     prizeModal.classList.add('scale-in-center');
+    resetSpinner();
     removeVideo();
 }
 
@@ -379,7 +380,6 @@ const checkPrizeData = prize => {
     }
 
     playWinVideo();
-    resetSpinner();
 }
 
 const checkCardInput = () => {
